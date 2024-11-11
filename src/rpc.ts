@@ -24,6 +24,7 @@ router.post('/', async (req, res) => {
 
   if (!method) return rpcError(res, 400, 'missing method', id);
 
+  console.log(`[origin] ${req.headers.origin} [post method]`, method);
   try {
     if (
       (method === 'get_vp' && !params.address) ||
