@@ -49,5 +49,6 @@ async function calculateScores(parent, args, key) {
 export default function scores(parent, args) {
   const id = JSON.stringify(args);
   const cacheKey = sha256(id);
+  console.log('cacheKey', cacheKey);
   return serve(id, calculateScores, [parent, args, cacheKey]);
 }

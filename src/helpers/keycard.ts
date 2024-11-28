@@ -11,6 +11,7 @@ const keycard = new Keycard({
 const checkKeycard = async (req, res, next) => {
   const { id = null } = req.body;
   const apiKey = req.headers['x-api-key'] || req.query.apiKey;
+  console.log(`api key: ${apiKey}`);
   if (apiKey && keycard.configured) {
     const keycardData = keycard.logReq(apiKey);
     if (!keycardData.valid) return rpcError(res, 400, 'invalid api key', id);

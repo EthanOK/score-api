@@ -56,7 +56,7 @@ export async function getVp(params: GetVpRequestParams) {
 
   if (['1319'].includes(params.network) || disabled.includes(params.space))
     throw 'something wrong with the strategies';
-
+  // TODO: getVp
   const result = await snapshot.utils.getVp(
     params.address,
     params.network,
