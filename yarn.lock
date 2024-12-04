@@ -2167,9 +2167,9 @@
     lodash.set "^4.3.2"
     starknet "^5.24.3"
 
-"@snapshot-labs/strategies@https://github.com/snapshot-labs/snapshot-strategies#master":
+"@snapshot-labs/strategies@https://github.com/EthanOK/snapshot-strategies#fix-custom-broviderUrl":
   version "0.1.0"
-  resolved "https://github.com/snapshot-labs/snapshot-strategies#1d2f9cde02ff49e4ca8de28f68485ecb89890cb0"
+  resolved "https://github.com/EthanOK/snapshot-strategies#7f0c7a54573f1551a5522bc794a6924030e527bd"
   dependencies:
     "@ethersproject/abi" "^5.6.4"
     "@ethersproject/address" "^5.6.1"

@@ -15,4 +15,8 @@ COPY . .
 
 EXPOSE 3003
 
-CMD ["yarn", "run", "dev"]
+# Build the app
+RUN yarn run build
+
+# Start the plication
+CMD ["yarn", "run", "start" ]

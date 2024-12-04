@@ -28,11 +28,16 @@ export default rateLimit({
   standardHeaders: true,
   legacyHeaders: false,
   keyGenerator: req => hashedIp(req),
-  skip: (req, res) => {
-    const keycardData = res.locals.keycardData;
-    if (keycardData?.valid && !keycardData.rateLimited) {
-      return true;
-    }
+  skip: req => {
+    if (!client?.isReady) return true;
+    // TODO: rate limited
+    const apiKey: any = req.headers['x-api-key'] || req.query.apiKey;
+    console.log('apiKey:', apiKey);
+    const whiteList = ['https://snapshot.osp.org'];
+    const apiKeyList = ['osp_snapshot_apiKey'];
+    const origin = req.headers['origin'];
+    if (origin && whiteList.includes(origin)) return true;
+    if (apiKey && apiKeyList.includes(apiKey)) return true;
     return false;
   },
   handler: (req, res) => {

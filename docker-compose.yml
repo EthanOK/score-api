@@ -1,24 +1,17 @@
 version: '3.8'
 
 services:
-  redis:
-    image: redis
-    environment:
-      # ALLOW_EMPTY_PASSWORD is recommended only for development.
-      - ALLOW_EMPTY_PASSWORD=yes
-      - REDIS_DISABLE_COMMANDS=FLUSHDB,FLUSHALL
-    ports:
-      - 6379:6379
-    volumes:
-      - .db:/data
-    restart: always
-    entrypoint: redis-server --appendonly yes
   score-api:
     build: .
+    container_name: score-api
     ports:
       - "3003:3003"
     env_file:
       - .env
-    volumes:
-      - .:/app
-      - /app/node_modules
+    environment:
+      RATE_LIMIT_DATABASE_URL: redis://redis:6379
+      DATABASE_URL: redis://redis:6379  
+
+networks:
+  default:
+    name: snapshot-network
